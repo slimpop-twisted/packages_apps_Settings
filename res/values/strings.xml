@@ -5979,4 +5979,35 @@
    <!-- Message for encryption dialog telling the user that Talkback and other accessibility services will be disabled. -->
    <string name="encrypt_talkback_dialog_message_password">When you enter your password to start this device, accessibility services like <xliff:g id="service" example="TalkBack">%1$s</xliff:g> won\'t yet be available.</string>
 
+    <!-- Navigation Bar -->
+    <string name="navigation_bar_general_category">General</string>
+    <string name="navigation_bar_title">Navigation bar</string>
+    <!-- Navigation Bar Height -->
+    <string name="navigation_bar_height">Height</string>
+    <string name="navigation_bar_height_54">54dp</string>
+    <string name="navigation_bar_height_52">52dp</string>
+    <string name="navigation_bar_height_50">50dp</string>
+    <string name="navigation_bar_height_48">48dp (default)</string>
+    <string name="navigation_bar_height_44">44dp</string>
+    <string name="navigation_bar_height_40">40dp</string>
+    <string name="navigation_bar_height_36">36dp</string>
+    <string name="navigation_bar_height_32">32dp</string>
+    <string name="navigation_bar_height_28">28dp</string>
+    <string name="navigation_bar_height_24">24dp</string>
+    <string name="navigation_bar_height_20">20dp</string>
+    <string name="navigation_bar_height_0">0dp (hide)</string>
+ 
+    <!-- Clear all recents on navbar enabler strings -->
+    <string name="clear_all_recents_navbar_enabled_title">Clear all recents button on Navbar</string>
+    <string name="clear_all_recents_navbar_enabled_summary">Show clear all recents button in navigation bar</string>
+
+    <!-- Partition Info -->
+    <string name="partition_info_title">View partition information</string>
+    <string name="partition_info_summary">Shows you the partition information for the device</string>
+    <string name="partition_info_system">/system</string>
+    <string name="partition_info_data">/data</string>
+    <string name="partition_info_cache">/cache</string>
+    <string name="partition_info_sdcard">/sdcard (FAT)</string>
+    <string name="partition_info_sdext">/sd-ext (EXT)</string>
+    <string name="partition_info_used_of">/</string>
 </resources>

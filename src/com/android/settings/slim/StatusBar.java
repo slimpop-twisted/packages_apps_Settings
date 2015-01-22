@@ -42,10 +42,16 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
     private static final String KEY_STATUS_BAR_CLOCK = "clock_style_pref";
     private static final String KEY_STATUS_BAR_TICKER = "status_bar_ticker_enabled";
+    private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+    private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
+    private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
 
     private SwitchPreference mStatusBarBrightnessControl;
     private PreferenceScreen mClockStyle;
     private SwitchPreference mTicker;
+    private ListPreference mStatusBarBattery;
+    private ListPreference mStatusBarBatteryShowPercent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,22 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mClockStyle = (PreferenceScreen) prefSet.findPreference(KEY_STATUS_BAR_CLOCK);
         updateClockStyleDescription();
 
+        mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
+        mStatusBarBatteryShowPercent =
+            (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
+
+        int batteryStyle = Settings.System.getInt(getContentResolver(),
+            Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
+        mStatusBarBattery.setValue(String.valueOf(batteryStyle));
+        mStatusBarBattery.setSummary(mStatusBarBattery.getEntry());
+        mStatusBarBattery.setOnPreferenceChangeListener(this);
+
+        int batteryShowPercent = Settings.System.getInt(getContentResolver(),
+            Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, 0);
+        mStatusBarBatteryShowPercent.setValue(String.valueOf(batteryShowPercent));
+        mStatusBarBatteryShowPercent.setSummary(mStatusBarBatteryShowPercent.getEntry());
+        enableStatusBarBatteryDependents(batteryStyle);
+        mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -93,6 +115,21 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_TICKER_ENABLED,
                     (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarBattery) {
+            int batteryStyle = Integer.valueOf((String) newValue);
+            int index = mStatusBarBattery.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_BATTERY_STYLE, batteryStyle);
+            mStatusBarBattery.setSummary(mStatusBarBattery.getEntries()[index]);
+            enableStatusBarBatteryDependents(batteryStyle);
+            return true;
+        } else if (preference == mStatusBarBatteryShowPercent) {
+            int batteryShowPercent = Integer.valueOf((String) newValue);
+            int index = mStatusBarBatteryShowPercent.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, batteryShowPercent);
+            mStatusBarBatteryShowPercent.setSummary(mStatusBarBatteryShowPercent.getEntries()[index]);
             return true;
         }
         return false;
@@ -116,4 +153,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
          }
     }
 
+    private void enableStatusBarBatteryDependents(int batteryIconStyle) {
+        if (batteryIconStyle == STATUS_BAR_BATTERY_STYLE_HIDDEN ||
+                   batteryIconStyle == STATUS_BAR_BATTERY_STYLE_TEXT) {
+            mStatusBarBatteryShowPercent.setEnabled(false);
+        } else {
+            mStatusBarBatteryShowPercent.setEnabled(true);
+        }
+    }
 }

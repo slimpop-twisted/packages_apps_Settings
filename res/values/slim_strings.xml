@@ -30,6 +30,13 @@
     <string name="header_category_personalization">Personalization</string>
     <string name="interface_settings_title">Interface</string>
 
+    <!-- twisted-->
+    <string name="twisted_settings_title">twisted Tweaks</string>
+    <string name="audio_settings">Audio</string>
+    <string name="nav_bar_settings">Nav Bar</string>
+    <string name="status_bar_settings">Status Bar</string>
+    <string name="misc_settings">Miscellaneous</string>
+  
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color below to apply</string>
@@ -576,4 +583,35 @@
     <string name="battery_saver_title">Warning color</string>
     <string name="battery_saver_style_reset_message">Reset battery saver warning color?</string>
 
+    <!-- Doze pulse (ambient display) notification timeout -->
+    <string name="doze_timeout_title">Ambient display timeout</string>
+    <string name="doze_timeout_summary">Time that the screen stays on for notification pulse</string>
+
+    <!-- Doze (ambient display) preference category -->
+    <string name="display_category_doze_options_title">Ambient display options</string>
+    <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
+    <string name="supersu_title">SuperSU</string>
+
+    <!-- Navigation Bar -->
+    <string name="navigation_bar_title">Navigation bar</string>
+
+    <!-- Navigation Bar Height -->
+    <string name="navigation_bar_height">Navigation bar height</string>
+    <string name="navigation_bar_height_48">48dp (default)</string>
+    <string name="navigation_bar_height_44">44dp</string>
+    <string name="navigation_bar_height_40">40dp</string>
+    <string name="navigation_bar_height_36">36dp</string>
+    <string name="navigation_bar_height_32">32dp</string>
+    <string name="navigation_bar_height_28">28dp</string>
+    <string name="navigation_bar_height_24">24dp</string>
+    <string name="navigation_bar_height_20">20dp</string>
+    <string name="navigation_bar_height_0">0dp (hide)</string>
+
+    <!-- Clear all recents on navbar enabler strings -->
+    <string name="clear_all_recents_navbar_enabled_title">Clear all recents button on Navbar</string>
+    <string name="clear_all_recents_navbar_enabled_summary">Show clear all recents button in navigation bar</string>  
+    
+    <string name="qs_advanced_location_title">Advanced location quick settings</string>
+    <string name="qs_advanced_location_summary">Enable advanced settings for location in quick settings</string>
+    
 </resources>
